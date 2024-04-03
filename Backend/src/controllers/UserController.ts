@@ -1,8 +1,9 @@
-import { isReadable } from "stream";
 import { AppDataSource } from "../data-source";
 import { User } from "../entity/User";
 import { Repository } from "typeorm";
-export class UserController{
+
+export class UserController
+{
     repository:Repository<User> = AppDataSource.getRepository(User);
     getAll = async (req, res) =>{
         try{

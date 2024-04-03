@@ -17,7 +17,7 @@ async function main() {
     }
 }
 
-/*
+
 AppDataSource.initialize().then(async () => {
 
     console.log("Inserting a new user into the database...")
@@ -35,6 +35,6 @@ AppDataSource.initialize().then(async () => {
     console.log("Here you can setup and run express / fastify / any other framework.")
 
 }).catch(error => console.log(error))
-*/
+
 
 main();
