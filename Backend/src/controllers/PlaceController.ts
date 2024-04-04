@@ -18,9 +18,7 @@ export class PlaceController
     AddPlace = async (req, res) =>
     {
         try {
-            var result:Place = new Place("Test","Test",false);
-            console.log(JSON.stringify(req.body));
-            console.log(JSON.stringify(req.params));
+            var result:Place = new Place(req.body.name,req.body.address,req.body.active);
             res.json(this.repository.save(result));
         } catch (error) {
             this.handleError(res,error);
