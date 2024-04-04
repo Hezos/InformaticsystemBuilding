@@ -1,5 +1,5 @@
-import { Entity, ObjectIdColumn, ObjectId, Column } from "../Backend/node_modules/typeorm"
 import {Guid} from 'guid-typescript';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Donor

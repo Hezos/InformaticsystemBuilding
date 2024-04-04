@@ -1,12 +1,17 @@
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
 import  express, { application }  from 'express'
 import { getRouter } from "./route";
+import cors from 'cors';
 
 async function main() {
     try{
         await AppDataSource.initialize();
         const app = express();
+        const allowedOrigins:string[] = ['http://localhost:3000', 'http://localhost:4200'];
+        const options: cors.CorsOptions = {
+            origin: allowedOrigins
+        };
+        app.use(cors(options));
         app.use(express.json());
         app.use('/api', getRouter());
         app.listen(3000, () =>{
@@ -17,7 +22,7 @@ async function main() {
     }
 }
 
-
+/*
 AppDataSource.initialize().then(async () => {
 
     console.log("Inserting a new user into the database...")
@@ -35,6 +40,6 @@ AppDataSource.initialize().then(async () => {
     console.log("Here you can setup and run express / fastify / any other framework.")
 
 }).catch(error => console.log(error))
-
+*/
 
 main();
