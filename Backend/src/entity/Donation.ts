@@ -22,4 +22,6 @@ export class Donation
     patient?:string;
     @Column()
     SSN?:string;
+    @Column()
+    endDate:Date;
 }

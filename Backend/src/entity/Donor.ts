@@ -18,4 +18,7 @@ export class Donor
     adddress:string;
     @Column()
     SSN:string;
+    @Column()
+    canApply:boolean;
+
 }

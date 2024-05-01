@@ -15,7 +15,6 @@ export abstract class Controller {
         try {
             const id = req.params.id;
             const entity = await this.repository.findOneBy({ id: id });
-
             if (!entity) {
                 return this.handleError(res, null, 404, 'Entity is not found.');
             }
@@ -76,4 +75,5 @@ export abstract class Controller {
 
         res.status(status).json({ error: message });
     };
+
 }
