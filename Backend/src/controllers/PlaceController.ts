@@ -4,7 +4,7 @@ import { AppDataSource } from "../data-source";
 
 export class PlaceController extends Controller
 {
-    static repository = AppDataSource.getRepository(Place);    
+    repository = AppDataSource.getRepository(Place);    
     isValid = async (place:Place) =>{
         //TODO: validation progress goes here!
        if(!place.address || !place.name){
@@ -15,8 +15,8 @@ export class PlaceController extends Controller
 
     //Call an update when changing for active and inactive!!!
 
-    static isActive = async (Address:string):Promise<boolean> =>{
-        var result:Place = await this.repository.findOneBy({address:Address});
+     isActive = async (id:string):Promise<boolean> =>{
+        var result:Place = await this.repository.findOneBy({_id:id});
         return result.active;
     };
 

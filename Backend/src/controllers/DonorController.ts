@@ -48,7 +48,7 @@ export class DonorController extends Controller {
         if(this.isValid(req.SSN)){
             try {
                 const entity = this.repository.create(req.body as object);
-                delete entity.id;
+                delete entity._id;
     
                 const entityInserted = await this.repository.save(entity);
                 res.json(entityInserted);

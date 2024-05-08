@@ -5,7 +5,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 export class Donor
 {
     @ObjectIdColumn()
-    id:Guid;
+    _id:string;
     @Column()
     name:string;
     @Column()

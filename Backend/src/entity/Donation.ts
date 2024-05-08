@@ -1,11 +1,11 @@
-import { Entity, ObjectIdColumn, ObjectId, Column } from "../Backend/node_modules/typeorm"
+import { Entity, ObjectIdColumn, Column } from "typeorm"
 import {Guid} from 'guid-typescript';
 
 @Entity()
 export class Donation
 {
     @ObjectIdColumn()
-    id:Guid;
+    _id:string;
     @Column()
     address:string;
     @Column()

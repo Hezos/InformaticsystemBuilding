@@ -3,18 +3,17 @@ import { Controller } from "./base.controller";
 import { Donation } from "../entity/Donation";
 import { AppDataSource } from "../data-source";
 import { PlaceController } from "./PlaceController";
-import { DonorController } from "./DonorController";
 
 export class DonationController extends Controller
 {
     repository: Repository<Donation> = AppDataSource.getRepository(Donation);
     override create = async (req, res) => {
         try {
-            if(!PlaceController.isActive(req.address)){                 
+            const pController = new PlaceController();
+            if(!pController.isActive(req._id)){                 
                 this.handleError(res, 'The place is not active!');
             }else{
                 const entity = this.repository.create(req.body as object);
-                delete entity.id;
                 const entityInserted = await this.repository.save(entity);
                 res.json(entityInserted);
             }                

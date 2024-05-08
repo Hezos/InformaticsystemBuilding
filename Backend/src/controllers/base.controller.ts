@@ -1,4 +1,5 @@
-import { Repository } from "typeorm";
+import { Guid } from "guid-typescript";
+import { DataSource, Repository } from "typeorm";
 export abstract class Controller {
     repository: Repository<any>;
 
@@ -13,7 +14,8 @@ export abstract class Controller {
 
     getOne = async (req, res) => {
         try {
-            const id = req.params.id;
+            const id = req.body._id;
+            
             const entity = await this.repository.findOneBy({ id: id });
             if (!entity) {
                 return this.handleError(res, null, 404, 'Entity is not found.');
@@ -28,8 +30,8 @@ export abstract class Controller {
     create = async (req, res) => {
         try {
             const entity = this.repository.create(req.body as object);
-            delete entity.id;
-
+            entity._id = Guid.create().toString();
+            console.log(entity);
             const entityInserted = await this.repository.save(entity);
             res.json(entityInserted);
         } catch (err) {
@@ -40,8 +42,8 @@ export abstract class Controller {
     update = async (req, res) => {
         try {
             const entity = this.repository.create(req.body as object);
-
-            const currentEntity = await this.repository.findOneBy({ id: entity.id });
+            const currentEntity = await this.repository.findOneBy({ id: entity._id });
+            await this.repository.remove(currentEntity);
             if (!currentEntity) {
                 return this.handleError(res, null, 404, 'Entity is not found.');
             }
