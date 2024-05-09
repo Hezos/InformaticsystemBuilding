@@ -29,7 +29,12 @@ export function getRouter():Router{
     router.post('/donation',donationController.create);
     router.patch('/donation',donationController.update);
     router.delete('/donation',donationController.delete);
-    router.post('/donation/getById',donationController.getOne)
-
+    router.post('/donation/getById',donationController.getOne);
+    router.post('/donation/getSuccessful', donationController.getSuccessfull);
+    router.post('/donation/getByAddress', donationController.getByAddress);
+    router.post('/donation/getByDonor', donationController.getByDonor);
+    router.post('/donation/getByStartTimeInterval', donationController.getByStartTimeInterval);
+    router.post('/donation/getByEndTimeInterval', donationController.getByEndTimeInterval);
+    
     return router;
 }

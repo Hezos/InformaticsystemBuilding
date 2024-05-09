@@ -45,8 +45,15 @@ export class DonationController extends Controller
     getSuccessfull = async (req, res) =>{
         try {
             //Get with multiple get oportunities
-            var donations:Array<Donation> = await this.repository.findBy({isAble:true});
-            res.json(donations);
+            //var donations:Array<Donation> = await this.repository.find({select: {isAble:true} } );
+            var donations:Array<Donation> = await this.repository.find();
+            var result:Array<Donation> =[];
+            donations.map((item) =>{
+                if(item.isAble){
+                    result.push(item);
+                }
+            });
+            res.json(result);
         } catch (error) {
             this.handleError(req,error);
         }
@@ -54,8 +61,20 @@ export class DonationController extends Controller
 
     getByAddress = async(req, res) =>{
         try {
-            var donations:Array<Donation> = await this.repository.findBy({ isAble:true, address:req.address});
-            res.json(donations);
+            var donations:Array<Donation> = await this.repository.find();
+            var Actives:Array<Donation> = [];
+            donations.map((item) =>{
+                if(item.isAble == true){
+                    Actives.push(item);
+                }
+            });            
+            var result:Array<Donation> = [];
+            Actives.map((item) =>{
+                if(item.address === req.body.adddress){
+                    result.push(item);
+                }
+            });
+            res.json(result);
         } catch (error) {
             this.handleError(req, error);
         }
@@ -63,8 +82,23 @@ export class DonationController extends Controller
 
     getByDonor = async(req, res) =>{
         try {
-            var donations:Array<Donation> = await this.repository.findBy({ isAble:true, patient:req.name});
-            res.json(donations);
+            //Method does not supported with mongodb
+            //var donations:Array<Donation> = await this.repository.findBy({ isAble:true, patient:req.body.patient});
+            var donations:Array<Donation> = await this.repository.find();
+            var Actives:Array<Donation> = [];
+            donations.map((item) =>{
+                if(item.isAble == true){
+                    Actives.push(item);
+                }
+            });            
+            var result:Array<Donation> = [];
+            Actives.map((item) =>{
+                if(item.patient === req.body.patient){
+                    result.push(item);
+                }
+            });
+            
+            res.json(result);
         } catch (error) {
             this.handleError(req, error);
         }
@@ -72,11 +106,18 @@ export class DonationController extends Controller
     
     getByStartTimeInterval = async(req, res) =>{
         try {
-            var donations:Array<Donation> = await this.repository.findBy({ isAble:true});
+            var donations:Array<Donation> = await this.repository.find();
+            var Actives:Array<Donation> = [];
+            donations.map((item) =>{
+                if(item.isAble == true){
+                    Actives.push(item);
+                }
+            });            
+            //var donations:Array<Donation> = await this.repository.findBy({ isAble:true});
             var selected:Donation;
-            for (let i:number = 0; i < donations.length; i++) {
-                if(donations.at(i).date == req.start){
-                    selected = donations.at(i);
+            for (let i:number = 0; i < Actives.length; i++) {
+                if(Actives.at(i).date == req.body.start){
+                    selected = Actives.at(i);
                 }
             }
             res.json(selected);
@@ -87,11 +128,19 @@ export class DonationController extends Controller
 
     getByEndTimeInterval = async(req, res) =>{
         try {
-            var donations:Array<Donation> = await this.repository.findBy({ isAble:true});
+
+            //var donations:Array<Donation> = await this.repository.findBy({ isAble:true});
+            var donations:Array<Donation> = await this.repository.find();
+            var Actives:Array<Donation> = [];
+            donations.map((item) =>{
+                if(item.isAble == true){
+                    Actives.push(item);
+                }
+            });            
             var selected:Donation;
-            for (let i:number = 0; i < donations.length; i++) {
-                if(donations.at(i).endDate == req.endDate ){
-                    selected = donations.at(i);
+            for (let i:number = 0; i < Actives.length; i++) {
+                if(Actives.at(i).endDate == req.body.endDate ){
+                    selected = Actives.at(i);
                 }
             }
             res.json(selected);
