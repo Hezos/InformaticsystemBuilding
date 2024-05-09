@@ -4,6 +4,7 @@ import { Donation } from "../entity/Donation";
 import { AppDataSource } from "../data-source";
 import { PlaceController } from "./PlaceController";
 import { DonorController } from "./DonorController";
+import { Guid } from "guid-typescript";
 
 export class DonationController extends Controller
 {
@@ -15,23 +16,24 @@ export class DonationController extends Controller
         var pc:PlaceController = new PlaceController();
         var addresses:Array<string> = await pc.GetAddresses();
         try {
-            const pController = new PlaceController();
-
-            if(!pController.isActive(req.address)){                 
+            var active:boolean = await pc.isActive(req.body.address);
+            if(active === false){                 
                 this.handleError(res, 'The place is not active!');
             }
-            else if(!names.includes(req.patient)){
+            else if(!names.includes(req.body.patient)){
                 this.handleError(res, 'Patient is not correct');
-            }else if(!addresses.includes(req.address)){
+            }
+            else if(!addresses.includes(req.body.address)){
                 this.handleError(res, 'Place name was not correct.');
             }
-            else if((!req.isAble && req.reason == '') || req.doctor == '' ){
+            else if(!req.isAble && (req.body.reason == '' || req.body.doctor == '') ){
                 this.handleError(res, 'Need medical attention');
-            }else if(req.isControlled && (req.SSN == '' || req.patient == '')){
+            }else if(req.isControlled && (req.body.SSN == '' || req.body.patient == '')){
                 this.handleError(res, 'Controlled needs patient and SSN');
             }
             else{
                 const entity = this.repository.create(req.body as object);
+                entity._id = Guid.create().toString();
                 const entityInserted = await this.repository.save(entity);
                 res.json(entityInserted);
             }                

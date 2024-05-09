@@ -1,27 +1,26 @@
 import { Entity, ObjectIdColumn, Column } from "typeorm"
-import {Guid} from 'guid-typescript';
 
 @Entity()
 export class Donation
 {
     @ObjectIdColumn()
-    _id:string;
+    public _id:string;
     @Column()
-    address:string;
+    public address:string;
     @Column()
-    date:Date;
+    public date:Date;
     @Column()
-    isAble:boolean;
+    public isAble:boolean;
     @Column()
-    reason?:string;
+    public reason?:string;
     @Column()
-    doctor:string;
+    public doctor:string;
     @Column()
-    isControlled:boolean;
+    public isControlled:boolean;
     @Column()
-    patient?:string;
+    public patient?:string;
     @Column()
-    SSN?:string;
+    public SSN?:string;
     @Column()
-    endDate:Date;
+    public endDate:Date;
 }

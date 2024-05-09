@@ -15,16 +15,17 @@ export class PlaceController extends Controller
     //Call an update when changing for active and inactive!!!
 
      isActive = async (pAddress:string):Promise<boolean> =>{
+        var result:boolean = false;
         var resultPlaces:Array<Place> = await this.repository.find();
-        var result:Place = null;
         resultPlaces.map(
             (item) =>{
-                if(item.address == pAddress){
-                    return item.active;
+                //String comparsion is malfunctioning here
+                if(item.address === pAddress){
+                    result = item.active;
                 }
             }
         );
-        return false;
+        return result;
     };
     //Seems to override at the getgo if the name of the method is matched
     CreatePlace = (req, res) =>{
