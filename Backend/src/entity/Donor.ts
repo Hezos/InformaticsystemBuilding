@@ -5,22 +5,22 @@ import { Collection, Column, Entity, ObjectIdColumn } from 'typeorm';
 export class Donor
 {
     @ObjectIdColumn()
-    _id:string;
+    public _id:string;
     @Column()
-    name:string;
+    public name:string;
     @Column()
-    birthplace:string;
+    public birthplace:string;
     @Column()
-    birthtime:Date;
+    public birthtime:Date;
     @Column()
-    adddress:string;
+    public adddress:string;
     @Column()
-    SSN:string;
+    public SSN:string;
     @Column()
-    canApply:boolean;
+    public canApply:boolean;
     @Column()
-    nation:string;
+    public nation:string;
 
     @Column()
-    test:string;
+    public test:string;
 }

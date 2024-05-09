@@ -16,7 +16,7 @@ export function getRouter():Router{
     router.get('/donor/actives', donorController.getNames);
     router.delete('/donor',donorController.delete);
     router.post('/donor',donorController.create);
-    router.patch('/donor',donorController.update);
+    router.post('/donor/update',donorController.update);
     router.post('/donor/getById', donorController.getOne);
     const placeController:PlaceController = new PlaceController();
     router.get('/place', placeController.getAll);
