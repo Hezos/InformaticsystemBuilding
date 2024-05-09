@@ -1,4 +1,5 @@
 import { Guid } from "guid-typescript";
+import { ObjectId } from "mongodb";
 import { DataSource, Repository } from "typeorm";
 export abstract class Controller {
     repository: Repository<any>;
@@ -15,8 +16,7 @@ export abstract class Controller {
     getOne = async (req, res) => {
         try {
             const id = req.body._id;
-            
-            const entity = await this.repository.findOneBy({ id: id });
+            const entity = await this.repository.findOneBy({ _id:id });
             if (!entity) {
                 return this.handleError(res, null, 404, 'Entity is not found.');
             }
@@ -29,6 +29,7 @@ export abstract class Controller {
 
     create = async (req, res) => {
         try {
+
             const entity = this.repository.create(req.body as object);
             entity._id = Guid.create().toString();
             console.log(entity);
@@ -41,8 +42,14 @@ export abstract class Controller {
 
     update = async (req, res) => {
         try {
+            console.log(req.body);
             const entity = this.repository.create(req.body as object);
-            const currentEntity = await this.repository.findOneBy({ id: entity._id });
+            const id = req.body._id;
+            const currentEntity = await this.repository.findOneBy({ _id:id });
+            if (!entity) {
+                return this.handleError(res, null, 404, 'Entity is not found.');
+            }
+            console.log(entity);
             await this.repository.remove(currentEntity);
             if (!currentEntity) {
                 return this.handleError(res, null, 404, 'Entity is not found.');

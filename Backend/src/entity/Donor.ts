@@ -1,5 +1,5 @@
 import {Guid} from 'guid-typescript';
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Collection, Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Donor
@@ -8,8 +8,6 @@ export class Donor
     _id:string;
     @Column()
     name:string;
-    @Column()
-    nation:string;
     @Column()
     birthplace:string;
     @Column()
@@ -20,5 +18,9 @@ export class Donor
     SSN:string;
     @Column()
     canApply:boolean;
+    @Column()
+    nation:string;
 
+    @Column()
+    test:string;
 }

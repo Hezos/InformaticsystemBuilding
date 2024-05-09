@@ -13,21 +13,23 @@ export function getRouter():Router{
     router.patch('/user',userController.update);
     const donorController:DonorController = new DonorController();
     router.get('/donor', donorController.getAll);
+    router.get('/donor/actives', donorController.getNames);
     router.delete('/donor',donorController.delete);
     router.post('/donor',donorController.create);
-    router.patch('donor',donorController.update);
+    router.patch('/donor',donorController.update);
+    router.post('/donor/getById', donorController.getOne);
     const placeController:PlaceController = new PlaceController();
     router.get('/place', placeController.getAll);
     router.post('/place/getById', placeController.getOne);
     router.post('/place', placeController.CreatePlace);
     router.delete('/place', placeController.delete);
-    router.patch('/place',placeController.update);
+    router.post('/place/update',placeController.update);
     const donationController:DonationController = new DonationController();
     router.get('/donation',donationController.getAll);
     router.post('/donation',donationController.create);
     router.patch('/donation',donationController.update);
     router.delete('/donation',donationController.delete);
-    
+    router.post('/donation/getById',donationController.getOne)
 
     return router;
 }

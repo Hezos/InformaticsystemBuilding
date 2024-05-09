@@ -1,24 +1,22 @@
-import {Guid} from '../FrontendUI/FrontEndUI/node_modules/guid-typescript'
 export interface UserDTO{
     id:number;
     name:string;
     address:string;
-    
 };
 
 export interface Donor
 {
-    id:string;
-    name:string;
-    nation:string;
-    birthplace:string;
-    birthtime:Date;
-    adddress:string;
-    SSN:string;
-    canApply:boolean;
-
+    _id?:string;
+    name?:string;
+    nation?:string;
+    birthplace?:string;
+    birthtime?:Date;
+    //Doesn't want to handle property!
+    adddress?:string;
+    SSN?:string;
+    canApply?:boolean;
+    test?:string;
 }
-
 
 export interface Place
 {
@@ -30,14 +28,14 @@ export interface Place
 
 export interface Donation
 {
-    _id:string;
-    address:string;
-    date:Date;
-    isAble:boolean;
+    _id?:string;
+    address?:string;
+    date?:Date;
+    isAble?:boolean;
     reason?:string;
-    doctor:string;
-    isControlled:boolean;
+    doctor?:string;
+    isControlled?:boolean;
     patient?:string;
     SSN?:string;
-    endDate:Date;
+    endDate?:Date;
 }

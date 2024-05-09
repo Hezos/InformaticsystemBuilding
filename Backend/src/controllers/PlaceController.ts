@@ -6,7 +6,6 @@ export class PlaceController extends Controller
 {
     repository = AppDataSource.getRepository(Place);    
     isValid = async (place:Place) =>{
-        //TODO: validation progress goes here!
        if(!place.address || !place.name){
         return false;
        }
@@ -15,25 +14,32 @@ export class PlaceController extends Controller
 
     //Call an update when changing for active and inactive!!!
 
-     isActive = async (id:string):Promise<boolean> =>{
-        var result:Place = await this.repository.findOneBy({_id:id});
-        return result.active;
+     isActive = async (pAddress:string):Promise<boolean> =>{
+        var resultPlaces:Array<Place> = await this.repository.find();
+        var result:Place = null;
+        resultPlaces.map(
+            (item) =>{
+                if(item.address == pAddress){
+                    return item.active;
+                }
+            }
+        );
+        return false;
     };
-
-    GetActives = async (req, res)=>{
-        try {
-            var result = this.repository.findBy({active:true});
-            res.json(result);   
-        } catch (error) {
-            this.handleError(res, error);
-        }
-    }
-
     //Seems to override at the getgo if the name of the method is matched
     CreatePlace = (req, res) =>{
         if(this.isValid(req)){
             this.create(req, res);
         }
+    }
+
+    GetAddresses = async () =>{
+        var result:Array<string> = [];
+        var resultPlaces = await this.repository.find();
+        resultPlaces.map((element) =>{
+            result.push(element.address);
+        });
+        return result;
     }
 
 }
