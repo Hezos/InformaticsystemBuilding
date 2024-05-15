@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="donationForm">
+            <div class="mb-3" >
+                <label for="name" class="form-label">Address:</label>
+                <input type="text"  class="form-control" id="address" formControlName="address">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Date:</label>
+                <input type="text" class="form-control" id="date" formControlName="date">
+            </div>
+            <div class="mb-3" style="display: flex; flex-direction:row">
+                <label for="name" class="form-label">Is able:</label>
+                <div style="width: 90%;"></div>
+                <input type="checkbox" id="isAble" formControlName="isAble">
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Reason:</label>
+                <input type="text" class="form-control" id="reason" formControlName="reason">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Doctor:</label>
+                <input type="text" class="form-control" id="doctor" formControlName="doctor">
+            </div>
+            <div class="mb-3" style="display: flex; flex-direction:row">
+                <label for="name" class="form-label">Is controlled:</label>
+                <div style="width: 82%;"></div>
+                <input type="checkbox" id="iscontrolled" formControlName="iscontrolled">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Patient:</label>
+                <input type="text"  class="form-control" id="patient" formControlName="patient">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">SSN:</label>
+                <input type="text"  class="form-control" id="SSN" formControlName="SSN">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Enddate:</label>
+                <input type="text" class="form-control" id="endDate" formControlName="endDate">
+            </div>
+            
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="saveDonation()">Save or add place</button>
+        </div>
+    </div>
+</div>

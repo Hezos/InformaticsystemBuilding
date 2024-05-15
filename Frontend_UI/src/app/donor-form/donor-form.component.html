@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="donorForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" class="form-control" id="test" formControlName="test">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Nation:</label>
+                <input type="text"  class="form-control" id="nation" formControlName="nation">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Birthplace:</label>
+                <input type="text" class="form-control" id="birthplace" formControlName="birthplace">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">Birthday:</label>
+                <input type="text" class="form-control" id="birthtime" formControlName="birthtime">
+            </div>
+            <div class="mb-3" >
+                <label for="name" class="form-label">SSN:</label>
+                <input type="text"  class="form-control" id="SSN" formControlName="SSN">
+            </div>
+            <div class="mb-3" style="display: flex; flex-direction:row">
+                <label for="name" class="form-label">Can apply:</label>
+                <div style="width: 85%;"></div>
+                <input type="checkbox" id="canApply" formControlName="canApply">
+            </div>
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="saveDonor()">Save or add donor</button>
+        </div>
+    </div>
+</div>

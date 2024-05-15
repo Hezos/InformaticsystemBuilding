@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center;">
+
+<div class="row" style="width: 90%;">
+    <div class="col-md-6">
+        <form [formGroup]="placeForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+            </div>
+            <div  style="display: flex; flex-direction:row; ">
+                <label for="name" class="form-label">Active:</label>
+                <div style="width: 90%;"></div>
+                <input type="checkbox" class="text-end" id="active" formControlName="active">
+            </div>
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="savePlace()">Save or add place</button>
+            
+        </div>
+    </div>
+</div>
+</div>

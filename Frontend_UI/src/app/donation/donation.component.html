@@ -1,0 +1,155 @@
+<div style="width: 100%; ">
+    <h1 style="text-align: center;"> List of donations: </h1>
+    <h1 >
+        Sort elements by
+    </h1>
+    <div style="display:flex; flex-direction:column">
+        <div style="display:flex; flex-direction:row">
+            <div>
+                <p>Patient:</p>
+                <input #box placeholder="patient" type="text" (keyup.enter)="onEnter(1,box.value)"/>
+            </div>
+            <div>
+                <p>Address:</p>
+                <input #box placeholder="address" type="text" (keyup.enter)="onEnter(2,box.value)"/>
+            </div>
+            <div>
+                <p>Startdate:</p>
+                <input #box type="text" placeholder="startdate" (keyup.enter)="onEnter(3,box.value)"/>
+            </div>
+            <div>
+                <p>Enddate:</p>
+                <input #box type="text" placeholder="enddate" (keyup.enter)="onEnter(4,box.value)"/>
+            </div>
+    </div>      
+    <button class=" btn btn-primary" style="width: 10%;">
+        succededs
+    </button>    
+
+    </div>
+    <div class="table-responsive" style="width: 100%;">
+        <table class="table table-hover table-bordered table-dark table-striped" style="width: 100%;" >
+            <thead>
+                <tr>
+                    <th>
+                        <p>
+                            Address:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Date:                        
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Is able:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Reason:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Doctor:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Is controlled:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Patient:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            SSN:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Enddate:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Modify
+                        </p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody style="width: 100%;">
+                @for (donation of donations; track $index)
+                {
+                   <tr>
+                       <td>
+                           <p>
+                               {{donation.address}}   
+                           </p>
+                       </td>
+                       <td>
+                           <p>
+                               {{donation.date}}   
+                           </p>
+                       </td>
+                       <td>
+                           <p>
+                               {{donation.isAble}}   
+                           </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.reason}}
+                        </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.doctor}}
+                        </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.isControlled}}
+                        </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.patient}}
+                        </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.SSN}}
+                        </p>
+                       </td>
+                       <td>
+                        <p>
+                            {{donation.endDate}}
+                        </p>
+                       </td>
+                       <td>
+                           <button class="btn btn-primary"  style="width: 50%;" (click)="goToDonationForm(donation._id)">
+                                Modify item
+                            </button>
+                       </td> 
+                   </tr>
+               }
+            </tbody>
+        </table>
+    </div>
+    @if (donations.length == 0) {
+        <p> Didn't find any elements </p>    
+    }
+    <div class="container" style="flex-direction: row; display:flex;">
+        <div style="width: 25%;"></div>
+        <button class="btn btn-primary"  style="width: 50%;" (click)="addDonation()">
+            Add a donation
+        </button>
+        <div style="width: 25%;"></div>
+    </div>
+</div>
